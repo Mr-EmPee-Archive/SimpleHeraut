@@ -1,10 +1,11 @@
-package tk.empee.notifier;
+package ml.empee.notifier;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import tk.empee.notifier.configs.DefaultConfig;
-import tk.empee.notifier.notifiers.DefaultNotifier;
-import tk.empee.notifier.notifiers.Notifier;
+
+import ml.empee.notifier.configs.DefaultConfig;
+import ml.empee.notifier.notifiers.DefaultNotifier;
+import ml.empee.notifier.notifiers.Notifier;
 
 import java.io.IOException;
 import java.net.URI;
@@ -46,7 +47,7 @@ public final class SimpleNotifier {
     }
 
     public void checkNotifications() {
-        if(!config.isEnabled()) {
+        if(!config.getEnabled()) {
             return;
         }
 

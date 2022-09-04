@@ -1,13 +1,13 @@
-package tk.empee.notifier.configs;
+package ml.empee.notifier.configs;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import ml.empee.configurator.ConfigFile;
 import ml.empee.configurator.annotations.Path;
+import ml.empee.notifier.ReportLevel;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import tk.empee.notifier.ReportLevel;
 
 import java.util.Locale;
 
@@ -20,7 +20,7 @@ public final class DefaultConfig extends ConfigFile {
     }
 
     @Path(value = "notifier.enabled", required = true)
-    private boolean enabled;
+    private Boolean enabled;
 
     @Path("notifier.report-level")
     private ReportLevel reportLevel;

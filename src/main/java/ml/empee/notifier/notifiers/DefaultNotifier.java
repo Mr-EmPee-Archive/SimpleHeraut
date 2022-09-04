@@ -1,4 +1,4 @@
-package tk.empee.notifier.notifiers;
+package ml.empee.notifier.notifiers;
 
 import java.util.logging.Logger;
 
