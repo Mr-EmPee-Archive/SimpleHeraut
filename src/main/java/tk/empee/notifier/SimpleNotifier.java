@@ -38,7 +38,7 @@ public final class SimpleNotifier {
         this(pluginID, new DefaultNotifier(plugin.getLogger()), plugin);
     }
     private SimpleNotifier(String pluginID, Notifier notifier, JavaPlugin plugin) {
-        this.config = DefaultConfig.loadConfig(plugin, "notifier.yml", true);
+        this.config = new DefaultConfig(plugin);
 
         this.pluginID = pluginID;
         this.plugin = plugin;
@@ -46,7 +46,6 @@ public final class SimpleNotifier {
     }
 
     public void checkNotifications() {
-
         if(!config.isEnabled()) {
             return;
         }
