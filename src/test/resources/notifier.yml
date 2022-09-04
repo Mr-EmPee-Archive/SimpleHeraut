@@ -1,0 +1,12 @@
+
+#  The report-level declare which
+#  notification type you are going to receive.
+#
+#  The values are:
+#   - INFO
+#   - UPDATE
+#   - BUG_FIX
+
+notifier:
+  enabled: true
+  report-level: INFO
