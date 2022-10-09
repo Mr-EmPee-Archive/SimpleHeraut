@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import ml.empee.configurator.ConfigFile;
+import ml.empee.configurator.ConfigurationProcessor;
 import ml.empee.configurator.annotations.Path;
 import ml.empee.notifier.ReportLevel;
 
@@ -15,14 +16,24 @@ import ml.empee.notifier.ReportLevel;
 @Setter(AccessLevel.PRIVATE)
 public final class DefaultConfig extends ConfigFile {
 
-  public DefaultConfig(JavaPlugin plugin) {
+  private static DefaultConfig instance;
+
+  public static DefaultConfig getInstance(JavaPlugin plugin) {
+    if(instance == null) {
+      instance = ConfigurationProcessor.loadConfiguration(new DefaultConfig(plugin));
+    }
+
+    return instance;
+  }
+
+  private DefaultConfig(JavaPlugin plugin) {
     super(plugin, "notifier.yml", false);
   }
 
   @Path(value = "notifier.enabled", required = true)
   private Boolean enabled;
 
-  @Path("notifier.report-level")
+  @Path(value = "notifier.report-level", required = true)
   private ReportLevel reportLevel;
 
   private void setReportLevel(String level) {

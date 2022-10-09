@@ -46,7 +46,7 @@ public final class SimpleNotifier implements Listener {
   }
 
   private SimpleNotifier(String pluginID, Notifier notifier, JavaPlugin plugin) {
-    this.config = new DefaultConfig(plugin);
+    this.config = DefaultConfig.getInstance(plugin);
 
     this.plugin = plugin;
     this.notifier = notifier;
