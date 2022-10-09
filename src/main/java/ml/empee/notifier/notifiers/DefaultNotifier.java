@@ -12,9 +12,11 @@ public final class DefaultNotifier implements Notifier {
     this.logger = logger;
   }
 
-    @Override
-    public void notify(String changelog) {
-        logger.info(changelog);
+  @Override
+  public void notify(String changelog) {
+    if(!changelog.isEmpty()) {
+      changelog = "This plugin isn't up to date. Here is the changelog: \n" + changelog;
+      logger.info(changelog);
     }
   }
 
