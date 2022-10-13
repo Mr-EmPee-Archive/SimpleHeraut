@@ -14,39 +14,36 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import ml.empee.notifier.configs.DefaultConfig;
+import ml.empee.configurator.ConfigurationManager;
+import ml.empee.notifier.configs.NotifierConfig;
 import ml.empee.notifier.notifiers.DefaultNotifier;
 import ml.empee.notifier.notifiers.Notifier;
 
 public final class SimpleNotifier implements Listener {
 
-  private static SimpleNotifier instance;
   private final JavaPlugin plugin;
 
   private final CloseableHttpClient httpClient = HttpClients.createDefault();
-  private final DefaultConfig config;
+  private final NotifierConfig config;
   private final String url;
   private final Notifier notifier;
 
-  public static SimpleNotifier getInstance(String pluginID, JavaPlugin plugin) {
-    if (instance == null) {
-      instance = new SimpleNotifier(pluginID, plugin);
-      plugin.getServer().getPluginManager().registerEvents(instance, plugin);
-    }
-
-    return instance;
+  public static void scheduleNotifier(String pluginID, Notifier notifier, JavaPlugin plugin, Long hours) {
+    SimpleNotifier instance = new SimpleNotifier(pluginID, notifier, plugin);
+    Bukkit.getScheduler().runTaskTimerAsynchronously(
+        plugin, instance::checkNotifications,
+        0, 20 * 60 * 60 * hours
+    );
+  }
+  public static void scheduleNotifier(String pluginID, JavaPlugin plugin, Long hours) {
+    scheduleNotifier(pluginID, new DefaultNotifier(plugin.getLogger()), plugin, hours);
   }
 
-  public static void checkNotifications(String pluginID, JavaPlugin plugin) {
-    Bukkit.getScheduler().runTaskAsynchronously(plugin, getInstance(pluginID, plugin)::checkNotifications);
-  }
-
-  private SimpleNotifier(String pluginID, JavaPlugin plugin) {
+  public SimpleNotifier(String pluginID, JavaPlugin plugin) {
     this(pluginID, new DefaultNotifier(plugin.getLogger()), plugin);
   }
-
-  private SimpleNotifier(String pluginID, Notifier notifier, JavaPlugin plugin) {
-    this.config = DefaultConfig.getInstance(plugin);
+  public SimpleNotifier(String pluginID, Notifier notifier, JavaPlugin plugin) {
+    this.config = ConfigurationManager.loadConfiguration(new NotifierConfig(plugin));
 
     this.plugin = plugin;
     this.notifier = notifier;
