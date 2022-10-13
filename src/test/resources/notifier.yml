@@ -1,11 +1,14 @@
-#  The report-level declare which
-#  notification type you are going to receive.
-#
-#  The values are:
-#   - INFO
-#   - UPDATE
-#   - BUG_FIX
-
 notifier:
+  # It's recommended to leave enabled this service!
+  # Instead of disabling it consider changing the report-level
   enabled: true
-  report-level: INFO
+  # The report-level declare which notification type you are going to receive.
+  #  The UPDATE report level warns you when is available an update that
+  #  add new content or improve performance
+  #
+  # The BUG_FIX report level warns you when is available an update that fixes a bug
+  #
+  # The IMPORTANT report level warns you when is available an update that
+  # is HIGHLY recommended to download
+  report-level: UPDATE # The values are: UPDATE, BUG_FIX, IMPORTANT
+config-version: 1
