@@ -1,14 +1,16 @@
 notifier:
-  # It's recommended to leave enabled this service!
-  # Instead of disabling it consider changing the report-level
+  # It's recommended to leave enabled this service! (If you disable it you are going to miss even security updates)
+  # Before disabling it consider changing the report level
   enabled: true
   # The report-level declare which notification type you are going to receive.
-  #  The UPDATE report level warns you when is available an update that
+  # Possible values: UPDATE, BUG_FIX, IMPORTANT
+  #
+  # The UPDATE report level warns you when is available an update that
   #  add new content or improve performance
   #
   # The BUG_FIX report level warns you when is available an update that fixes a bug
   #
   # The IMPORTANT report level warns you when is available an update that
-  # is HIGHLY recommended to download
-  report-level: UPDATE # The values are: UPDATE, BUG_FIX, IMPORTANT
+  #  is HIGHLY recommended to download
+  report-level: UPDATE
 config-version: 1
