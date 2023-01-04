@@ -13,4 +13,3 @@ notifier:
   # The IMPORTANT report level warns you when is available an update that
   #  is HIGHLY recommended to download
   report-level: UPDATE
-config-version: 1
