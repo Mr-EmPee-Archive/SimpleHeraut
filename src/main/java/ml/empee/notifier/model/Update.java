@@ -29,7 +29,7 @@ public class Update {
   }
 
   public String getDescription() {
-    return new String(Base64.getDecoder().decode(this.description));
+    return new String(Base64.getDecoder().decode(this.description)).replace("<br>", "");
   }
 
   public String toString() {
