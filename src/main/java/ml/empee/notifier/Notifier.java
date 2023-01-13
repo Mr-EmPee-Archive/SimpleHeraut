@@ -29,7 +29,10 @@ public class Notifier {
   public static Notifier listenForUpdates(JavaPlugin plugin, String resourceID) {
     try {
       Notifier notifier = new Notifier(plugin, resourceID);
-      notifier.scheduleUpdateChecking();
+      if(notifier.config.getEnabled()) {
+        notifier.scheduleUpdateChecking();
+      }
+
       return notifier;
     } catch (MalformedURLException e) {
       throw new IllegalArgumentException("Invalid resource ID: " + resourceID);
