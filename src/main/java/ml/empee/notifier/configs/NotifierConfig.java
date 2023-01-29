@@ -7,6 +7,7 @@ import ml.empee.configurator.Configuration;
 import ml.empee.configurator.annotations.Path;
 import ml.empee.configurator.annotations.Required;
 import ml.empee.notifier.ReportLevel;
+import org.bukkit.plugin.java.JavaPlugin;
 
 @Getter @Setter(AccessLevel.PRIVATE)
 public final class NotifierConfig extends Configuration {
@@ -19,8 +20,8 @@ public final class NotifierConfig extends Configuration {
   @Path("notifier.report-level")
   private ReportLevel reportLevel;
 
-  public NotifierConfig() {
-    super("notifier.yml", 1);
+  public NotifierConfig(JavaPlugin plugin) {
+    super(plugin, "notifier.yml", 1);
   }
 
 }

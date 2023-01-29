@@ -20,7 +20,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Notifier {
 
-  private final NotifierConfig config = new NotifierConfig();
+  private final NotifierConfig config;
   private final JavaPlugin plugin;
   private final Logger log;
   private final URL fetchUpdateURL;
@@ -40,6 +40,7 @@ public class Notifier {
   }
   public Notifier(JavaPlugin plugin, String resourceID) throws MalformedURLException {
     this.plugin = plugin;
+    this.config = new NotifierConfig(plugin);
     this.log = plugin.getLogger();
 
     this.fetchUpdateURL = new URL(
